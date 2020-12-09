@@ -1,5 +1,7 @@
 /*REMEMBER TO RETURN ALL OF THE ANSWERS ON THESE TASKS, IF YOU DON'T, THE AUTOGRADER WILL NOT WORK*/
 
+import { parse } from "@babel/core";
+
 /* 👀 This is your data ⬇ */
 const originalFlavors = [
     "Banana Nut Fudge",
@@ -109,7 +111,7 @@ function removeLastFlavor(array){
 Write a function that returns a flavor at a given index in the array.
 
 Use the getFlavorByIndex function below to do the following:
-    1. Recieve an array
+    1. Receive an array
     2. Receive a number (the desired index)
     3. Return the flavor located at the received index position
 
@@ -192,11 +194,11 @@ function getAverageWordLength(array){
     for(let i=0; i<array.length;i++){
         totalWords += array[i].split(" ").length;
     }
-    console.log(totalWords, array.length);
+    //console.log(totalWords, array.length);
     return totalWords/array.length;
 }
 
-console.log(`Stretch 1: ${getAverageWordLength(originalFlavors)}`);
+//console.log(`Stretch 1: ${getAverageWordLength(originalFlavors)}`);
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
@@ -204,17 +206,12 @@ Baskin Robins now offers new flavors, seasonal flavors, and even regional flavor
 from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors and store it in an array called randomFlavors.
 
 Use the getRandomFlavors function and new arrays below to do the following:
-    1. Receive the four arrays with all the differnet flavors (originalFlavors is above, the others are below)
+    1. Receive the four arrays with all the different flavors (originalFlavors is above, the others are below)
     2. Randomly pick flavors from all four arrays
-    3. Return a new array called randomFlavors that has a lenght of 31
+    3. Return a new array called randomFlavors that has a length of 31
 
     For example: getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors) might return ["Strawberry Cheesecake", "Eggnog,"..."Chocolate"].
 */
-
-
-function getRandomFlavors(/*code here*/){
-    /*code here*/
-}
 
 // NEW DATA ARRAYS FOR STRETCH 2 ⬇️
 const newFlavors = [
@@ -296,6 +293,21 @@ const regionalFlavors = [
     "Chocolate Chocolate Chip Cheesecake",
     "Caramel 'n' Cookies"
 ]
+
+
+function getRandomFlavors(originalF, newF, seasonalF, regionalF){
+    //put all flavors in same array
+    let allFlavors = [].concat(originalF, newF, seasonalF, regionalF);
+    //create array to store random flavors, then run for loop 31 times
+    let randomFlavors = [];
+    for (let i=0; i<31; i++){
+        //get the random flavor, remove it from the allFlavors array to avoid doubles, then push it to the new one.
+        randomFlavors.push(allFlavors.splice(allFlavors[parseInt((Math.random()*allFlavors.length)+1)], 1).toString());
+    }
+    return randomFlavors;
+}
+
+//console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors));
 
 
 
